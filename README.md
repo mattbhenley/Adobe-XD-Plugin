@@ -34,3 +34,19 @@ All XD plugins are required to have a “manifest.” When you save this, make s
 ```
 # Input the plugin code
 This resides in a file named `main.js`. 
+
+```
+
+const { Rectangle, Color } = require("scenegraph");  // [1]
+const commands = require("commands");                // [2]
+function myPluginCommand(selection) {                // [3]
+  /* all the code we talk about in the next section will 
+     go in here */
+}
+module.exports = {                                   // [4]
+  commands: {
+    myPluginCommand
+  }
+};
+```
+
