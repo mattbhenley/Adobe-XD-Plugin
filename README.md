@@ -1,4 +1,6 @@
-# Building my first Adobe XS plugin  
+# Building my first Adobe XS plugin 
+
+We'll be building a plugin called "Draw Lots of Rectangles"
 
 # Open the plugin development folder 
 Plugins > Development > Show Develop Folder menu command, and a new Finder or Explorer window will open, revealing the “develop” folder.  XD expects that you will create a folder for each plugin you want to build. Let’s create a folder for our first plugin. We can name it “my-first-plugin” or just about anything you want (just be sure to name it something you’ll recognize).
@@ -50,3 +52,63 @@ module.exports = {                                   // [4]
 };
 ```
 
+# Implement the plugin logic
+
+```
+
+const rect = new Rectangle();
+rect.width = 320;
+rect.height = 320;
+```
+
+```
+
+rect.fill = null;
+rect.stroke = new Color("white");
+rect.opacity = 0.5;
+```
+
+# Add the rectangle to the canvas
+
+`selection.insertionParent.addChild(rect);`
+
+# Select the rectangle 
+
+`selection.items = [rect];`
+
+# Duplicate the selection 
+
+`commands.duplicate();`
+
+# Rotate it 
+
+```
+
+const node = selection.items[0]; 
+node.rotateAround(5, node.localCenterPoint);
+```
+
+# Move it 
+
+`node.moveInParentCoordinates(5, 0);`
+
+# Repeat
+
+```
+
+let times = 0;
+while (times < 179) {
+  // steps 6 - 9
+  commands.duplicate();
+  const node = selection.items[0];
+  node.rotateAround(5, node.localCenterPoint);
+  node.moveInParentCoordinates(5, 0);
+  // end of steps 6 - 9
+  
+  times += 1;
+}
+```
+
+# Finished Plugin 
+
+![RectanglesPlugin](https://github.com/mattbhenley/Images/blob/master/spirals.png)
