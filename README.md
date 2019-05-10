@@ -1,4 +1,4 @@
-# Building my first Adobe XS plugin 
+# Building my first Adobe Xd plugin 
 
 We'll be building a plugin called "Draw Lots of Rectangles"
 
